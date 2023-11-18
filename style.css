@@ -1,0 +1,101 @@
+/* Estilos para la tabla */
+
+.header-row {
+    background-color: yellow; /* Cambiado a amarillo */
+    color: #333; /* Cambiado a un color oscuro para el texto */
+    font-weight: bold;
+}
+
+/* Aplicar estilos a las celdas del encabezado */
+.header-row th {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #000; /* Cambiado a negro */
+}
+
+/* Aplicar estilos a las celdas de datos regulares */
+#tabla-datos tbody td {
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #000; /* Cambiado a negro */
+}
+
+/* Estilos del formulario */
+#form-datos h1 {
+    font-size: 40px;
+    color: #000;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+label {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+select {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #333;
+    border-radius: 8px;
+    margin: 5px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 3px;
+    margin-right: 5px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* Estilos del Spinner */
+
+body {
+    margin: 0;
+    background-color: violet; /* Cambiado a violeta */
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 8px solid yellow; /* Cambiado a amarillo */
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>Segundo Parcil Labo |||</title>
+</head>
+
+<body>
+    <div class="overlay" id="overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="frm-lista">
+        <h1>Formulario Lista</h1>
+        <table id="tabla-datos">
+            <thead>
+                <tr class="header-row">
+                    <th id="id-header">Id</th>
+                    <th id="nombre-header">Nombre</th>
+                    <th id="apellido-header">Apellido</th>
+                    <th id="edad-header">Edad</th>
+                    <th id="Equipos-header">Equipos</th>
+                    <th id="Posicion-header">Posicion</th>
+                    <th id="CantidadGoles-header">CantidadGoles</th>
+                    <th id="Titulo-header">Titulo</th>
+                    <th id="Facultad-header">Facultad</th>
+                    <th id="anoGraduacion-header">AnoGraduacion</th>
+                    <th id="modificar-header">modificar</th>
+                    <th id="eliminar-header">eliminar</th>
+
+                </tr>
+            </thead>
+            <tbody id="tabla-datos"></tbody>
+        </table>
+        <br>
+        <button id="agregar-elemento">Agregar Elemento</button>
+    </div>
+
+    <div style="display: none;" id="frm-abm">
+        <h2>Formulario ABM</h2>
+        <h3 id="accion-frm"></h3>
+        <label for="id">Id:</label>
+        <input type="text" id="id" disabled="true" /><br>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" /><br>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" /><br>
+        <label for="edad">Edad:</label>
+        <input type="text" id="edad" /><br>
+        <label for="tipo">Tipo</label>
+        <select id="tipo">
+            <option>Futbolista</option>
+            <option>Profesional</option>
+        </select>
+        <br>
+        <label for="equipo">Equipo:</label>
+        <input type="text" id="equipo" /><br>
+        <label for="posicion">posicion:</label>
+        <input type="text" id="posicion" /><br>
+        <label for="CantidadGoles">CantidadGoles:</label>
+        <input type="text" id="CantidadGoles" /><br>
+        <label for="titulo">titulo:</label>
+        <input type="text" id="titulo" /><br>
+        <label for="facultad">facultad:</label>
+        <input type="text" id="facultad" /><br>
+        <label for="anoGraduacion">año graduacion:</label>
+        <input type="text" id="anoGraduacion" /><br>
+        <button id="cancelar">Cancelar</button>
+        <button id="aceptar">Aceptar</button>
+        <button id="modificar">Modificar</button>
+        <button id="eliminar">Eliminar</button>
+    </div>
+
+
+    <script type="module" src="js/ajax.mjs"></script>
+    <script type="module" src="js/script.mjs"></script>
+</body>
+
+</html>
