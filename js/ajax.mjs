@@ -103,7 +103,7 @@ async function modificarUsuarioApi(userId, updatedUserData) {
     }
 }
 
-
+/*
 
 
 function eliminarUsuarioApi(IdUsuario) {
@@ -131,11 +131,43 @@ function eliminarUsuarioApi(IdUsuario) {
         }
     })
     .catch(error => {
-        console.error(error.message);
+       // console.error(error.message);
         throw error;
     });
 }
 
+*/
+function eliminarUsuarioApi(IdUsuario) {
+    const url = 'http://localhost/labor3examen/servidorlabo.php';
+
+    // Utiliza la función fetch para enviar una solicitud DELETE a la API
+    return fetch(url, {
+        method: 'DELETE',  // Método HTTP DELETE
+        headers: {
+            'Content-Type': 'application/json',  // Tipo de contenido JSON
+        },
+        body: JSON.stringify({ id: IdUsuario }),  // Cuerpo de la solicitud, convierte el objeto a JSON
+    })
+    .then(response => {
+        // Verifica si la respuesta fue exitosa (código de estado 2xx)
+        if (!response.ok) {
+            throw new Error(`Error deleting user: ${response.status}`);
+        }
+        return response.text(); // Recibe la respuesta como texto
+    })
+    .then(data => {
+        // Verifica si la respuesta es "Exito"
+        if (data.trim().toLowerCase() === 'exito') {
+            console.log('User deleted successfully');
+        } else {
+            throw new Error('Error deleting user');
+        }
+    })
+    .catch(error => {
+        // Captura y maneja cualquier error ocurrido durante el proceso
+        throw error;
+    });
+}
 
 
 export { getUsersApi, agregarUsuariosApi, modificarUsuarioApi, eliminarUsuarioApi};

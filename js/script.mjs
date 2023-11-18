@@ -18,7 +18,10 @@ let txtPosicion = document.getElementById('posicion');
 let txtCantidadGoles = document.getElementById('CantidadGoles');
 let txtTitulo = document.getElementById('titulo');
 let txtFacultad = document.getElementById('facultad');
-let txtAnoGraduacion = document.getElementById('anoGraduacion');
+
+
+
+let txtañoGraduacion = document.getElementById('añoGraduacion');
 
 
 //dropDown de tipo
@@ -90,6 +93,9 @@ function limpiarTabla() {
 }
 
 
+
+
+
 // oculta y pone los formularios 
 function switchForms() {
     if (frmLista.style.display === "none") {
@@ -156,7 +162,7 @@ btnAceptar.addEventListener("click", () => {
                     llenarTabla(listaUsuarios);
                 }
             } else if (tipo === "Profesional") {
-                if (txtNombre.value === "" || txtApellido.value === "" || txtEdad.value === "" || txtTitulo.value === "" || txtFacultad.value === "" || txtAnoGraduacion.value === "") {
+                if (txtNombre.value === "" || txtApellido.value === "" || txtEdad.value === "" || txtTitulo.value === "" || txtFacultad.value === "" || txtañoGraduacion.value === "") {
                     alert("Falto completar alguno de los campos");
                     hideSpinner();
                 } else {
@@ -167,7 +173,7 @@ btnAceptar.addEventListener("click", () => {
                         edad: txtEdad.value,
                         titulo: txtTitulo.value,
                         facultad: txtFacultad.value,
-                        añoGraduacion: txtAnoGraduacion.value,
+                        añoGraduacion: txtañoGraduacion.value,
                     };
                     listaUsuarios.push(newUser);
                     llenarTabla(listaUsuarios);
@@ -194,7 +200,7 @@ function limpiarFormAbm() {
     txtCantidadGoles.value = "";
     txtTitulo.value = "";
     txtFacultad.value = "";
-    txtAnoGraduacion.value = "";
+    txtañoGraduacion.value = "";
 }
 
 
@@ -268,15 +274,22 @@ function desabilitarCamposNoProfesional() {
 }
 
 function habilitarCamposProfesional() {
-    txtTitulo.disabled = false;
-    txtFacultad.disabled = false;
-    txtAnoGraduacion.disabled = false;
+    if (txtTitulo) {
+        txtTitulo.disabled = false;
+    }
+    if (txtFacultad) {
+        txtFacultad.disabled = false;
+    }
+    if (txtañoGraduacion) {
+        txtañoGraduacion.disabled = false;
+    }
 }
+
 
 function desabilitarCamposNoFutbolista() {
     txtTitulo.disabled = true;
     txtFacultad.disabled = true;
-    txtAnoGraduacion.disabled = true;
+    txtañoGraduacion.disabled = true;
 }
 
 function habilitarCamposFutbolista() {
@@ -302,6 +315,7 @@ document.addEventListener('DOMContentLoaded', function () {
     tablaDatos.addEventListener('click', function (event) {
         if (event.target.classList.contains('btn-modificar')) {
             const clickedRow = event.target.closest('tr');
+          //  let index = clickedRow.rowIndex - 1; 
 
             let id = clickedRow.querySelector('td:nth-child(1)').innerText;
             let nombre = clickedRow.querySelector('td:nth-child(2)').innerText;
@@ -312,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let cantidadGoles  = clickedRow.querySelector('td:nth-child(7)').innerText;
             let titulo = clickedRow.querySelector('td:nth-child(8)').innerText;
             let facultad = clickedRow.querySelector('td:nth-child(9)').innerText;
-            let anioGraduacion = clickedRow.querySelector('td:nth-child(10)').innerText;
+            let añoGraduacion = clickedRow.querySelector('td:nth-child(10)').innerText;
 
             if (equipo != "N/A" && posicion != "N/A") {
                 const nuevoFutbolista = {
@@ -327,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 cargarTxtFrmAbm(nuevoFutbolista);
             }
 
-            if (titulo != "N/A" && facultad != "N/A" && anioGraduacion != "N/A") {
+            if (titulo != "N/A" && facultad != "N/A" && añoGraduacion != "N/A") {
                 const nuevoProfesional = {
                     id: id,
                     nombre: nombre,
@@ -335,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     edad: edad,
                     titulo: titulo,
                     facultad: facultad,
-                    anioGraduacion: anioGraduacion
+                    añoGraduacion: añoGraduacion
                 };
                 cargarTxtFrmAbm(nuevoProfesional);
             }
@@ -359,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let cantidadGoles  = clickedRow.querySelector('td:nth-child(7)').innerText;
             let titulo = clickedRow.querySelector('td:nth-child(8)').innerText;
             let facultad = clickedRow.querySelector('td:nth-child(9)').innerText;
-            let anioGraduacion = clickedRow.querySelector('td:nth-child(10)').innerText;
+            let añoGraduacion = clickedRow.querySelector('td:nth-child(10)').innerText;
 
             if (equipo != "N/A" && posicion != "N/A") {
                 const nuevoFutbolista = {
@@ -411,7 +425,7 @@ function cargarTxtFrmAbm(usuario) {
         txtEdad.value = usuario.edad;
         txtEquipo.value = usuario.equipo;
         txtPosicion.value = usuario.posicion;
-        txtCantidadGoles = usuario.cantidadGoles;
+        txtCantidadGoles.value = usuario.cantidadGoles;
         desabilitarCamposNoFutbolista();
         habilitarCamposFutbolista();
     }
@@ -426,17 +440,25 @@ function cargarTxtFrmAbm(usuario) {
         txtEdad.value = usuario.edad;
         txtTitulo.value = usuario.titulo;
         txtFacultad.value = usuario.facultad;
-        txtAnoGraduacion = usuario.añoGraduacion;
+        txtañoGraduacion.value = usuario.añoGraduacion;
         desabilitarCamposNoProfesional();
         habilitarCamposProfesional();
     }
 }
+function modificarUsuarioPorId(id, nuevoUsuario) {
+    const index = listaUsuarios.findIndex(usuario => usuario.id == id);
+    if (index !== -1) {
+        listaUsuarios[index] = nuevoUsuario;
+    }
+}
+
 
 async function modificarUsuario(id,usuario) {
     showSpinner();
     try {
         await modificarUsuarioApi(id, usuario);
-        listaUsuarios.splice(id,1,usuario);
+//listaUsuarios.splice(id,1,usuario);
+         modificarUsuarioPorId(id, usuario);
         llenarTabla(listaUsuarios);
         alert("El Usuario fue Modificado Correctamente");
         hideSpinner();
@@ -445,6 +467,10 @@ async function modificarUsuario(id,usuario) {
         hideSpinner();
     }
 }
+
+
+
+
 
 btnModificar.addEventListener("click", () => {
 
@@ -458,7 +484,7 @@ btnModificar.addEventListener("click", () => {
         cantidadGoles: txtCantidadGoles.value,
         titulo: txtTitulo.value,
         facultad: txtFacultad.value,
-        añoGraduacion: txtAnoGraduacion, 
+        añoGraduacion: txtañoGraduacion.value, 
     }
 
     modificarUsuario(txtId.value, usuarioModificado);
@@ -479,15 +505,6 @@ function eliminarUsuario(id){
     })
 }
 
-
-
-function eliminarUsuarioPorId(id) {
-    for (let i = 0; i < listaUsuarios.length; i++) {
-        if (listaUsuarios[i].id == id) {
-            listaUsuarios.splice(i, 1);
-        }
-    }
-}
 
 btnEliminar.addEventListener("click", () => {
     eliminarUsuario(txtId.value);
